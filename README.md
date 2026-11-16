@@ -1,5 +1,7 @@
 # Brazil Power Dispatch
 
+[![tests](https://github.com/luke-corporations/brazil-power-dispatch/actions/workflows/tests.yml/badge.svg)](https://github.com/luke-corporations/brazil-power-dispatch/actions/workflows/tests.yml) ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue) ![License: MIT](https://img.shields.io/badge/license-MIT-green)
+
 Least-cost hourly power dispatch and capacity expansion for a stylised Brazilian power system, written in Python with [Pyomo](https://www.pyomo.org/) and the open-source [HiGHS](https://highs.dev/) solver.
 
 The model answers three questions that power market models answer every day:
