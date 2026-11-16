@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brazil-power-dispatch"
+version = "0.1.0"
+description = "Least-cost hourly power dispatch and capacity expansion for a stylised Brazilian power system, built with Pyomo."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Lucas Toledo Fernandes" }]
+dependencies = [
+    "pyomo>=6.7",
+    "highspy>=1.7",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

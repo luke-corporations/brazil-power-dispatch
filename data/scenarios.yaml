@@ -1,0 +1,23 @@
+# Each scenario changes the base system in data/system.yaml.
+# Options: hydro_budget_factor, demand_factor, carbon_price (R$/tCO2),
+#          capacity_factor (multiplier per plant name).
+
+normal:
+  description: Base case - average rainfall
+
+dry_year:
+  description: Drought - 40% less water in the reservoirs
+  hydro_budget_factor: 0.6
+
+more_solar:
+  description: Three times more solar capacity
+  capacity_factor:
+    solar: 3.0
+
+carbon_price:
+  description: Carbon price of R$250 per tonne of CO2
+  carbon_price: 250
+
+growth_2035:
+  description: Demand 30% higher, as expected around 2035
+  demand_factor: 1.3

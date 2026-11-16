@@ -1,0 +1,66 @@
+# Stylised Brazilian regional power system.
+# ILLUSTRATIVE numbers chosen to be realistic in shape, not official data.
+# Units: capacity in MW, costs in R$/MWh, emissions in tonnes of CO2 per MWh.
+
+plants:
+  - name: hydro
+    technology: hydro
+    capacity_mw: 6000
+    variable_cost: 10           # O&M only. The real "cost" of hydro is the water it uses (see hydro budget).
+    min_output_mw: 1000         # minimum ecological flow that must keep running below the dam
+    emissions_t_per_mwh: 0.0
+
+  - name: solar
+    technology: solar
+    capacity_mw: 3000
+    variable_cost: 0
+    emissions_t_per_mwh: 0.0
+
+  - name: gas_ccgt              # combined-cycle gas turbine: efficient, mid-cost
+    technology: gas
+    capacity_mw: 3000
+    variable_cost: 350
+    emissions_t_per_mwh: 0.37
+    ramp_mw_per_hour: 400       # big steam cycle: changes output slowly
+
+  - name: gas_peaker            # open-cycle gas turbine: fast, expensive, used at peaks
+    technology: gas
+    capacity_mw: 2500
+    variable_cost: 700
+    emissions_t_per_mwh: 0.55
+    ramp_mw_per_hour: 1500      # fast-starting
+
+  - name: diesel                # last resort
+    technology: diesel
+    capacity_mw: 1000
+    variable_cost: 1200
+    emissions_t_per_mwh: 0.75
+
+hydro:
+  daily_energy_budget_mwh: 100000   # water available in the reservoirs today, expressed as energy
+
+value_of_lost_load: 10000           # R$/MWh penalty for leaving demand unserved (blackout cost)
+
+# ---- Investment options, used only by the expansion model (python -m dispatch expand) ----
+discount_rate: 0.10                 # cost of capital used to spread capex over the plant's life
+
+candidates:
+  - name: new_solar
+    technology: solar               # follows the solar availability profile
+    unit_size_mw: 500
+    max_units: 20
+    capex_per_mw: 4000000           # R$ per MW, paid once
+    lifetime_years: 25
+    fixed_om_per_mw_year: 60000
+    variable_cost: 0
+    emissions_t_per_mwh: 0.0
+
+  - name: new_ccgt
+    technology: gas
+    unit_size_mw: 500
+    max_units: 8
+    capex_per_mw: 5000000
+    lifetime_years: 25
+    fixed_om_per_mw_year: 100000
+    variable_cost: 330
+    emissions_t_per_mwh: 0.35
